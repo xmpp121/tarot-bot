@@ -12,7 +12,7 @@ from telegram.ext import (
 
 # ==== НАСТРОЙКИ (ЗАПОЛНИТЕ) ====
 BOT_TOKEN = "8050194596:AAGoCprj1aDw4UwzhBQ2Ma8Uc-O4TBFhQaU"
-CHANNEL_CHAT_ID = -1001234567890
+CHANNEL_CHAT_ID = -1003163971463
 CSV_PATH = "contacts.csv"
 
 
