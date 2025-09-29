@@ -197,12 +197,21 @@ async def handle_contact(update: Update, context: ContextTypes.DEFAULT_TYPE):
              user_id, phone, first_name, last_name)
 
     # 1) Сначала тихо отправим контакт в канал (бот должен быть админом канала!)
+    # получаем объект пользователя (можно и через update.effective_user)
+    try:
+        chat = await context.bot.get_chat(user_id)
+        username = f"@{chat.username}" if chat.username else "—"
+    except Exception:
+        username = "—"
+    
     text = (
         "📥 Новый контакт (квиз Таро)\n"
         f"Имя: {first_name} {last_name}\n"
         f"Телефон: {phone}\n"
-        f"User ID: {user_id}"
+        f"User ID: {user_id}\n"
+        f"Username: {username}"
     )
+
     try:
         await context.bot.send_message(chat_id=CHANNEL_CHAT_ID, text=text)
         log.info("Contact forwarded to channel %s", CHANNEL_CHAT_ID)
