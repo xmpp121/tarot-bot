@@ -10,10 +10,16 @@ from telegram.ext import (
     ContextTypes, filters
 )
 
-# ==== НАСТРОЙКИ (ЗАПОЛНИТЕ) ====
-BOT_TOKEN = "8050194596:AAGoCprj1aDw4UwzhBQ2Ma8Uc-O4TBFhQaU"
-CHANNEL_CHAT_ID = -1003163971463
-CSV_PATH = "contacts.csv"
+# ==== НАСТРОЙКИ (через ENV) ====
+import os
+
+BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
+if not BOT_TOKEN:
+    raise RuntimeError("BOT_TOKEN is not set")
+
+CHANNEL_CHAT_ID = int(os.getenv("CHANNEL_CHAT_ID", "-1003163971463"))
+CSV_PATH = os.getenv("CSV_PATH", "contacts.csv")
+
 
 
 # ==== ЛОГИ ====
